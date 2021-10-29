@@ -37,8 +37,7 @@
       </div>
 
        <h1></h1>
-    <IoT/>
-    </div>
+   </div>
 </template>
 
 <script>
