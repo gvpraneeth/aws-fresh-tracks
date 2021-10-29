@@ -46,6 +46,36 @@
 
 <script>
 export default {
-  name: "HomeContent"
+  name: "HomeContent",
+  methods: {
+async getActivities() {
+      const token = await this.$auth.getTokenSilently()
+      console.log( 'Token:'+token)
+      axios({
+        method: "GET",
+        headers:{ Authorization: `Bearer ${token}` } ,  
+        url: process.env.VUE_APP_APIGW_URL+'/activities',
+        params:{"user_id": this.user_id},
+      }).then(response => { 
+        this.success = 'Data retrieved successfully';
+        //this.response = JSON.stringify(response, null, 2)
+        this.activities= response.data.Items
+
+        let total =   this.total
+        this.showSkeleton=0;
+        this.activities.forEach(function(item) {
+             //total += JSON.parse(item.metadata.S).gpxMeta['length']
+            total += JSON.parse(item.metadata.S).gpxMeta['length']
+            
+        });
+         this.$emit('DistanceTotal',total)
+      }).catch(error => {
+        console.log(error)
+        this.response = 'Error: ' + error.response.status
+      })
+
+    }
+
+  }
 };
 </script>
