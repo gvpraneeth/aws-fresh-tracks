@@ -79,7 +79,6 @@ export default {
       console.log( 'Token:'+token)
       axios({
         method: "GET",
-        headers:{ Authorization: `Bearer ${token}` } ,  
         url: process.env.VUE_APP_APIGW_URL+'/activities',
         params:{"user_id": this.user_id},
       }).then(response => { 
