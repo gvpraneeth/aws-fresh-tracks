@@ -80,7 +80,6 @@ export default {
       axios({
         method: "GET",
         url: process.env.VUE_APP_APIGW_URL+'/activities',
-        headers:{ Authorization: `Bearer ${token}` } ,  
         params:{"user_id": this.user_id},
       }).then(response => { 
         this.success = 'Data retrieved successfully';
