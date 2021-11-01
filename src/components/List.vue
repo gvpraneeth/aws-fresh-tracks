@@ -31,7 +31,7 @@
         <h3> 
           You haven't uploaded any activities yet. Drag a GPX file into the drop zone below to get started.
           <img style="float: right; max-width: 130px;" src="/images/downArrow.png">
-        
+        <!-- Test checkin -->
          </h3>
         <br/>
       </div>
@@ -80,6 +80,7 @@ export default {
       axios({
         method: "GET",
         url: process.env.VUE_APP_APIGW_URL+'/activities',
+        headers:{ Authorization: `Bearer ${token}` } ,  
         params:{"user_id": this.user_id},
       }).then(response => { 
         this.success = 'Data retrieved successfully';
